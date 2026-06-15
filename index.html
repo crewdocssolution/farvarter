@@ -9,21 +9,21 @@
 <meta name="description" content="Супровід моряків в оформленні документів, запис на медкомісію та консультації з працевлаштування. Працюємо по всій Україні та з Європою. Прозора вартість.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0E2A26">
-<link rel="canonical" href="https://your-domain.ua/">
+<link rel="canonical" href="https://farvater.od.ua/">
 
 <!-- ===== SEO: мовні версії (hreflang) =====
      Коли зробиш RU-дзеркало — поклади його за адресою /ru/ і залиш ці теги -->
-<link rel="alternate" hreflang="uk" href="https://your-domain.ua/">
-<link rel="alternate" hreflang="ru" href="https://your-domain.ua/ru/">
-<link rel="alternate" hreflang="x-default" href="https://your-domain.ua/">
+<link rel="alternate" hreflang="uk" href="https://farvater.od.ua/">
+<link rel="alternate" hreflang="ru" href="https://farvater.od.ua/ru/">
+<link rel="alternate" hreflang="x-default" href="https://farvater.od.ua/">
 
 <!-- ===== Open Graph / соцмережі (превʼю при репості) ===== -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="uk_UA">
 <meta property="og:title" content="Фарватер — документи моряка під ключ">
 <meta property="og:description" content="Документи, медкомісія, працевлаштування. Супровід на кожному етапі.">
-<meta property="og:url" content="https://your-domain.ua/">
-<meta property="og:image" content="https://your-domain.ua/og-image.jpg">
+<meta property="og:url" content="https://farvater.od.ua/">
+<meta property="og:image" content="https://farvater.od.ua/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- ===== Структуровані дані для Google (LocalBusiness) ===== -->
@@ -33,9 +33,9 @@
   "@type": "ProfessionalService",
   "name": "Фарватер",
   "description": "Допомога морякам з оформленням документів, медкомісією та консультаціями з працевлаштування.",
-  "url": "https://your-domain.ua/",
+  "url": "https://farvater.od.ua/",
   "telephone": "+380759003522",
-  "email": "hello@your-domain.ua",
+  "email": "farvarterod@gmail.com",
   "areaServed": ["UA", "EU"],
   "address": {
     "@type": "PostalAddress",
@@ -484,12 +484,13 @@
         <h2>Розрахуємо вартість вашого завдання</h2>
         <p>Опишіть, що потрібно оформити — ми відповімо з планом і ціною. Зазвичай протягом робочого дня.</p>
         <div class="contact-item"><span class="b">📞</span><a href="tel:+380759003522">+38 (075) 900-35-22</a></div>
-        <div class="contact-item"><span class="b">✉️</span><a href="mailto:hello@your-domain.ua">hello@your-domain.ua</a></div>
+        <div class="contact-item"><span class="b">✉️</span><a href="mailto:farvarterod@gmail.com">farvarterod@gmail.com</a></div>
         <div class="contact-item"><span class="b">📍</span>Одеса, Україна · працюємо по всій країні</div>
       </div>
 
-      <!-- ⚠️ Підстав свій Formspree-ендпоінт у action -->
-      <form action="https://formspree.io/f/ВАШ_ID" method="POST" class="reveal">
+      <!-- Форма відправляє заявку у Telegram через Cloudflare Worker.
+           ⚠️ Встав свій URL воркера в JS нижче (змінна WORKER_URL). -->
+      <form id="leadForm" class="reveal" novalidate>
         <label for="name">Імʼя</label>
         <input id="name" name="name" type="text" placeholder="Як до вас звертатися" required>
 
@@ -507,11 +508,15 @@
         <label for="msg">Деталі (необовʼязково)</label>
         <textarea id="msg" name="message" rows="3" placeholder="Коротко опишіть завдання"></textarea>
 
+        <!-- пастка для ботів: люди це поле не бачать -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+
         <label class="consent">
           <input type="checkbox" required>
           <span>Я погоджуюся з <a href="privacy.html" style="color:var(--ink);text-decoration:underline;font-weight:600">політикою конфіденційності</a> та обробкою моїх даних.</span>
         </label>
 
+        <p id="formError" style="display:none;color:#b3261e;font-size:.88rem;margin-top:10px"></p>
         <button type="submit" class="btn btn-primary">Надіслати заявку →</button>
       </form>
     </div>
@@ -541,7 +546,7 @@
     </div>
     <div class="foot-bot">
       <span>© <span id="yr"></span> Фарватер. Усі права захищені.</span>
-      <span>Одеса, Україна · hello@your-domain.ua</span>
+      <span>Одеса, Україна · farvarterod@gmail.com</span>
     </div>
   </div>
 </footer>
@@ -575,6 +580,51 @@
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   }, {threshold:.15});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ===== Відправка заявки у Telegram =====
+     ⚠️ ЗАМІНИ цей URL на адресу свого Cloudflare Worker: */
+  var WORKER_URL = 'https://farvarter-form.egor-kabluchko12.workers.dev';
+  var form = document.getElementById('leadForm');
+  if(form){
+    var errBox = document.getElementById('formError');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // власна валідація (бо novalidate)
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      var orig = btn.textContent;
+      errBox.style.display = 'none';
+      btn.disabled = true; btn.textContent = 'Надсилаємо…';
+      var fd = new FormData(form);
+      var payload = {
+        name: fd.get('name') || '',
+        phone: fd.get('phone') || '',
+        service: fd.get('service') || '',
+        message: fd.get('message') || '',
+        website: fd.get('website') || ''   // honeypot
+      };
+      fetch(WORKER_URL, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(j && j.ok){
+          form.innerHTML =
+            '<div style="text-align:center;padding:26px 0">' +
+            '<div style="font-size:2.6rem;margin-bottom:10px">✅</div>' +
+            '<h3 style="font-family:Unbounded;margin-bottom:8px">Заявку надіслано!</h3>' +
+            '<p style="color:rgba(14,42,38,.7)">Звʼяжемося з вами найближчим часом.</p></div>';
+        } else { throw new Error('bad response'); }
+      })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = orig;
+        errBox.textContent = 'Не вдалося надіслати. Спробуйте ще раз або напишіть нам у Telegram/WhatsApp.';
+        errBox.style.display = 'block';
+      });
+    });
+  }
 
   if(!reduce){
     /* 3D-нахил сцени та карток за рухом миші */
