@@ -8,4 +8,4 @@ Disallow: /thank-you-internal/
 Disallow: /*?utm_
 
 # Посилання на карту сайту
-Sitemap: https://your-domain.ua/sitemap.xml
+Sitemap: https://farvater.od.ua/sitemap.xml
