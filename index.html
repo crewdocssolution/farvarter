@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO: базові теги ===== -->
+<title>Фарватер — документи моряка, медкомісія, працевлаштування</title>
+<meta name="description" content="Супровід моряків в оформленні документів, запис на медкомісію та консультації з працевлаштування. Працюємо по всій Україні та з Європою. Прозора вартість.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0E2A26">
+<link rel="canonical" href="https://your-domain.ua/">
+
+<!-- ===== SEO: мовні версії (hreflang) =====
+     Коли зробиш RU-дзеркало — поклади його за адресою /ru/ і залиш ці теги -->
+<link rel="alternate" hreflang="uk" href="https://your-domain.ua/">
+<link rel="alternate" hreflang="ru" href="https://your-domain.ua/ru/">
+<link rel="alternate" hreflang="x-default" href="https://your-domain.ua/">
+
+<!-- ===== Open Graph / соцмережі (превʼю при репості) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Фарватер — документи моряка під ключ">
+<meta property="og:description" content="Документи, медкомісія, працевлаштування. Супровід на кожному етапі.">
+<meta property="og:url" content="https://your-domain.ua/">
+<meta property="og:image" content="https://your-domain.ua/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- ===== Структуровані дані для Google (LocalBusiness) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Фарватер",
+  "description": "Допомога морякам з оформленням документів, медкомісією та консультаціями з працевлаштування.",
+  "url": "https://your-domain.ua/",
+  "telephone": "+380000000000",
+  "email": "hello@your-domain.ua",
+  "areaServed": ["UA", "EU"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Одеса",
+    "addressCountry": "UA"
+  },
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "priceRange": "$$"
+}
+</script>
+
+<!-- ===== Шрифти (з фолбеком на системні, якщо не завантажаться) ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --green:#A3BF6F;
+    --orange:#FF8234;
+    --cream:#FAE6D8;
+    --ink:#0E2A26;        /* глибока вода — головний темний */
+    --ink-2:#143A34;
+    --water:#15514A;       /* середній тон води для градієнтів */
+    --foam:#FFF6EE;        /* майже білий теплий */
+    --green-deep:#6E8F46;
+    --shadow: 0 24px 60px -20px rgba(8,30,26,.55);
+    --r: 22px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:"Unbounded","Manrope",system-ui,sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:"Manrope";font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+
+  /* ===== Кнопки ===== */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:"Unbounded";font-weight:700;font-size:.95rem;
+    padding:15px 26px;border-radius:100px;border:0;cursor:pointer;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s;
+    will-change:transform;
+  }
+  .btn-primary{background:var(--orange);color:var(--ink);box-shadow:0 12px 28px -8px rgba(255,130,52,.6)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 34px -8px rgba(255,130,52,.7)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:var(--cream);border:1.5px solid rgba(250,230,216,.35)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+  .btn-dark{background:var(--ink);color:var(--cream)}
+  .btn-dark:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+
+  /* ===== Хедер ===== */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:.35s}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;
+    margin:14px auto;max-width:var(--maxw);padding:10px 16px 10px 22px;
+    background:rgba(14,42,38,.55);backdrop-filter:blur(14px);
+    border:1px solid rgba(250,230,216,.12);border-radius:100px}
+  header.nav.scrolled .nav-inner{background:rgba(14,42,38,.92)}
+  .brand{display:flex;align-items:center;gap:11px;color:var(--cream)}
+  .brand .logo{width:34px;height:34px;border-radius:10px;
+    background:conic-gradient(from 200deg,var(--green),var(--orange),var(--green));
+    display:grid;place-items:center;font-family:"Unbounded";font-weight:900;color:var(--ink);font-size:1rem;
+    box-shadow:0 6px 16px -4px rgba(255,130,52,.5)}
+  .brand b{font-family:"Unbounded";font-weight:800;letter-spacing:.02em;font-size:1.05rem}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{color:var(--cream);font-weight:600;font-size:.93rem;opacity:.85;transition:.2s}
+  .nav-links a:hover{opacity:1;color:var(--green)}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+  .nav-mcta{display:none}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2.5px;background:var(--cream);border-radius:3px;transition:.3s}
+
+  /* ===== HERO + 3D глибина ===== */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;
+    background:radial-gradient(120% 90% at 70% 0%, var(--water) 0%, var(--ink) 55%, #08201C 100%);
+    overflow:hidden}
+  .hero-glow{position:absolute;top:-14%;right:6%;width:460px;height:460px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,130,52,.32), transparent 60%);
+    z-index:1;pointer-events:none}
+  .hero-stars{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 18% 28%, rgba(250,230,216,.55), transparent),
+      radial-gradient(1.5px 1.5px at 68% 18%, rgba(250,230,216,.4), transparent),
+      radial-gradient(1px 1px at 48% 52%, rgba(250,230,216,.4), transparent),
+      radial-gradient(1px 1px at 82% 44%, rgba(250,230,216,.3), transparent),
+      radial-gradient(1.5px 1.5px at 33% 66%, rgba(250,230,216,.3), transparent)}
+  /* Лёгкие CSS-волны (рисует GPU, без canvas) */
+  .waves{position:absolute;left:0;right:0;bottom:0;height:210px;z-index:2;pointer-events:none;overflow:hidden}
+  .wave{position:absolute;left:0;bottom:0;width:200%;height:100%;background-repeat:repeat-x;
+    background-position:bottom;will-change:transform}
+  .wave.w1{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 140' preserveAspectRatio='none'><path fill='%2315514A' d='M0,70 C200,110 400,30 600,70 C800,110 1000,30 1200,70 L1200,140 L0,140 Z'/></svg>");
+    background-size:50% 150px;animation:drift 24s linear infinite}
+  .wave.w2{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 140' preserveAspectRatio='none'><path fill='%23A3BF6F' d='M0,70 C200,110 400,30 600,70 C800,110 1000,30 1200,70 L1200,140 L0,140 Z'/></svg>");
+    background-size:50% 108px;animation:drift 18s linear infinite reverse;opacity:.95}
+  .wave.w3{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 140' preserveAspectRatio='none'><path fill='%23FAE6D8' d='M0,70 C200,110 400,30 600,70 C800,110 1000,30 1200,70 L1200,140 L0,140 Z'/></svg>");
+    background-size:50% 70px;animation:drift 14s linear infinite}
+  @keyframes drift{to{transform:translateX(-50%)}}
+  .hero-content{position:relative;z-index:5;padding:130px 0 160px;width:100%}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  .hero h1{color:var(--cream);font-size:clamp(2.1rem,5.4vw,4.4rem);font-weight:900;overflow-wrap:break-word;hyphens:auto}
+  .hero h1 .accent{color:var(--green)}
+  .hero p.lead{color:rgba(250,230,216,.82);font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:540px;margin:22px 0 32px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-trust{display:flex;gap:26px;margin-top:40px;flex-wrap:wrap}
+  .hero-trust div{color:var(--cream)}
+  .hero-trust .num{font-family:"Unbounded";font-weight:800;font-size:1.5rem;color:var(--green)}
+  .hero-trust .lbl{font-size:.82rem;opacity:.7}
+
+  /* 3D сцена з картками-документами */
+  .scene{position:relative;height:440px;perspective:1300px}
+  .scene-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .15s ease-out}
+  .doc{position:absolute;border-radius:18px;padding:18px;background:var(--foam);
+    box-shadow:0 30px 60px -22px rgba(0,0,0,.6);transform-style:preserve-3d;
+    border:1px solid rgba(14,42,38,.06)}
+  .doc .strip{height:8px;width:46px;border-radius:4px;background:var(--orange);margin-bottom:12px}
+  .doc h4{font-family:"Unbounded";font-weight:700;font-size:.95rem;margin-bottom:8px;color:var(--ink)}
+  .doc .ln{height:7px;border-radius:4px;background:rgba(14,42,38,.10);margin:7px 0}
+  .doc .seal{position:absolute;bottom:16px;right:16px;width:38px;height:38px;border-radius:50%;
+    background:conic-gradient(var(--green),var(--green-deep));opacity:.9}
+  .doc-1{width:230px;left:8%;top:6%;transform:translateZ(80px) rotate(-7deg)}
+  .doc-2{width:215px;right:4%;top:30%;transform:translateZ(140px) rotate(6deg);background:var(--green)}
+  .doc-2 .strip{background:var(--ink)}
+  .doc-2 h4{color:var(--ink)}
+  .doc-2 .ln{background:rgba(14,42,38,.18)}
+  .doc-3{width:190px;left:18%;bottom:2%;transform:translateZ(40px) rotate(3deg)}
+  .float{animation:bob 7s ease-in-out infinite}
+  .float.b{animation-delay:-2.5s;animation-duration:8s}
+  .float.c{animation-delay:-4.5s;animation-duration:9s}
+  @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -11px}}
+
+  /* (старый разделитель убран — используем .waves) */
+
+  /* ===== Секції ===== */
+  section{position:relative}
+  .pad{padding:96px 0}
+  .sec-head{max-width:680px;margin-bottom:54px}
+  .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;margin:14px 0 14px}
+  .sec-head p{color:rgba(14,42,38,.7);font-size:1.08rem}
+
+  /* Послуги — 3D tilt-картки */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{position:relative;background:var(--foam);border-radius:var(--r);padding:30px;
+    border:1px solid rgba(14,42,38,.07);box-shadow:0 18px 40px -28px rgba(8,30,26,.5);
+    transition:transform .2s ease-out, box-shadow .3s;transform-style:preserve-3d;will-change:transform}
+  .card:hover{box-shadow:var(--shadow)}
+  .card .icn{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;
+    font-size:1.6rem;margin-bottom:18px;transform:translateZ(40px)}
+  .card.green .icn{background:var(--green)}
+  .card.orange .icn{background:var(--orange)}
+  .card.ink .icn{background:var(--ink);color:var(--cream)}
+  .card h3{font-size:1.25rem;font-weight:700;margin-bottom:8px;transform:translateZ(28px)}
+  .card .sub{color:rgba(14,42,38,.6);font-size:.92rem;margin-bottom:18px}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .card li{display:flex;gap:10px;font-size:.95rem;color:var(--ink)}
+  .card li::before{content:"";flex:0 0 18px;height:18px;margin-top:3px;border-radius:6px;
+    background:var(--green);box-shadow:inset 0 0 0 6px var(--foam),0 0 0 1.5px var(--green)}
+  .card.orange li::before{background:var(--orange);box-shadow:inset 0 0 0 6px var(--foam),0 0 0 1.5px var(--orange)}
+
+  /* Процес */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+  .step{background:rgba(255,255,255,.5);border:1px solid rgba(14,42,38,.08);border-radius:18px;padding:26px 22px}
+  .step .no{counter-increment:s;font-family:"Unbounded";font-weight:900;font-size:1.6rem;
+    color:var(--orange);display:block;margin-bottom:10px}
+  .step .no::before{content:"0" counter(s)}
+  .step h4{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+  .step p{font-size:.92rem;color:rgba(14,42,38,.66)}
+
+  /* Темна секція "чому ми" */
+  .dark{background:var(--ink);color:var(--cream)}
+  .dark .sec-head h2{color:var(--cream)}
+  .dark .sec-head p{color:rgba(250,230,216,.7)}
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .why{display:flex;gap:16px;padding:24px;border-radius:18px;background:rgba(255,255,255,.04);
+    border:1px solid rgba(250,230,216,.1)}
+  .why .b{flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:var(--green);color:var(--ink)}
+  .why h4{color:var(--cream);font-size:1.08rem;margin-bottom:4px}
+  .why p{color:rgba(250,230,216,.72);font-size:.93rem}
+
+  /* CTA / контакт */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
+  .contact-info h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;margin-bottom:16px}
+  .contact-info p{color:rgba(14,42,38,.72);margin-bottom:26px;max-width:440px}
+  .contact-item{display:flex;align-items:center;gap:14px;margin-bottom:14px;font-weight:600}
+  .contact-item .b{width:44px;height:44px;border-radius:12px;background:var(--green);display:grid;place-items:center;font-size:1.2rem}
+  form{background:var(--foam);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  form label{display:block;font-weight:600;font-size:.88rem;margin:14px 0 6px}
+  form input,form textarea,form select{width:100%;padding:13px 15px;border-radius:12px;
+    border:1.5px solid rgba(14,42,38,.14);font:inherit;background:#fff;color:var(--ink);transition:.2s}
+  form input:focus,form textarea:focus,form select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,130,52,.15)}
+  form .consent{display:flex;gap:10px;align-items:flex-start;margin:16px 0;font-size:.82rem;color:rgba(14,42,38,.7)}
+  form .consent input{width:auto;margin-top:3px}
+  form button{width:100%;justify-content:center;margin-top:8px}
+
+  /* Футер */
+  footer{background:#08201C;color:rgba(250,230,216,.75);padding:60px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  footer .brand b{color:var(--cream)}
+  footer p{font-size:.9rem;margin-top:14px;max-width:320px}
+  footer h5{color:var(--cream);font-family:"Unbounded";font-size:.85rem;letter-spacing:.05em;margin-bottom:16px}
+  footer a{display:block;color:rgba(250,230,216,.7);font-size:.92rem;margin-bottom:10px;transition:.2s}
+  footer a:hover{color:var(--green)}
+  .foot-bot{border-top:1px solid rgba(250,230,216,.12);padding-top:24px;display:flex;
+    justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;color:rgba(250,230,216,.5)}
+
+  /* Плаваюча кнопка месенджера */
+  .fab{position:fixed;right:22px;bottom:22px;z-index:50;display:flex;flex-direction:column;gap:12px}
+  .fab a{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:1.5rem;
+    box-shadow:var(--shadow);transition:transform .25s}
+  .fab a:hover{transform:scale(1.1)}
+  .fab .tg{background:#229ED9}.fab .wa{background:#25D366}
+
+  /* Reveal-анімація */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ===== Адаптив ===== */
+  @media(max-width:920px){
+    .hero-grid,.contact-grid{grid-template-columns:1fr}
+    .cat-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .why-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+
+    /* Шапка: оставляем только бургер, кнопку прячем в меню */
+    .nav-links{display:none}
+    .burger{display:flex}
+    .nav-cta .btn-primary{display:none}
+    .nav-links.open{display:flex;position:absolute;top:74px;left:16px;right:16px;flex-direction:column;
+      align-items:stretch;gap:16px;background:rgba(14,42,38,.97);padding:22px;border-radius:22px;
+      box-shadow:0 24px 60px -20px rgba(0,0,0,.6)}
+    .nav-links.open a{font-size:1.05rem;text-align:center}
+    .nav-links.open .nav-mcta{display:inline-flex;justify-content:center;color:var(--ink);opacity:1}
+
+    /* Герой: сцена сверху, меньше высоты, цифры не залезают на волны */
+    .hero{min-height:auto}
+    .hero-content{padding:120px 0 170px}
+    .scene{height:300px;order:-1;margin-bottom:6px}
+    .waves{height:130px}
+    .hero-actions .btn{flex:1 1 auto;justify-content:center}
+    .hero-trust{gap:18px;margin-top:30px}
+    .hero-trust > div{flex:1 1 30%;min-width:120px}
+  }
+  @media(max-width:520px){
+    .steps{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .pad{padding:60px 0}
+    .wrap{padding:0 18px}
+    .nav-inner{margin:10px auto}
+    .brand b{font-size:1rem}
+    /* карточки не вылезают за экран */
+    .scene{height:280px}
+    .doc-1{width:min(220px,60vw);left:4%;top:4%}
+    .doc-2{width:min(205px,56vw);right:2%;top:32%}
+    .doc-3{width:min(180px,50vw);left:14%;bottom:0}
+    .doc h4{font-size:.9rem}
+    .hero-content{padding:108px 0 150px}
+    form{padding:22px}
+    .card{padding:24px}
+  }
+
+  /* Поважаємо вимкнену анімацію (доступність + менше навантаження) */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== ХЕДЕР ===== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#">
+      <span class="logo">Ф</span>
+      <b>Фарватер</b>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Послуги</a>
+      <a href="#process">Як це працює</a>
+      <a href="#why">Чому ми</a>
+      <a href="#contact">Контакти</a>
+      <a href="#contact" class="btn btn-primary nav-mcta">Залишити заявку</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Залишити заявку</a>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-stars" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-text reveal">
+          <span class="eyebrow">Документи моряка · Україна та Європа</span>
+          <h1>Ваш курс крізь <span class="accent">паперову</span> бюрократію</h1>
+          <p class="lead">Допомагаємо морякам оформити документи, записатися на медкомісію та підготуватися до працевлаштування. Беремо рутину на себе — ви виходите в рейс вчасно.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Розрахувати вартість →</a>
+            <a href="#services" class="btn btn-ghost">Перелік послуг</a>
+          </div>
+          <div class="hero-trust">
+            <div><span class="num">7+</span><div class="lbl">років з морською<br>документацією</div></div>
+            <div><span class="num">UA·EU</span><div class="lbl">працюємо по Україні<br>та з Європою</div></div>
+            <div><span class="num">0 ₴</span><div class="lbl">прихованих<br>платежів</div></div>
+          </div>
+        </div>
+
+        <div class="scene" id="scene" aria-hidden="true">
+          <div class="scene-inner" id="sceneInner">
+            <div class="doc doc-1 float">
+              <div class="strip"></div><h4>Послужна книжка</h4>
+              <div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div><div class="ln" style="width:80%"></div>
+              <div class="seal"></div>
+            </div>
+            <div class="doc doc-2 float b">
+              <div class="strip"></div><h4>Робочий диплом</h4>
+              <div class="ln" style="width:85%"></div><div class="ln" style="width:60%"></div>
+              <div class="seal"></div>
+            </div>
+            <div class="doc doc-3 float c">
+              <div class="strip"></div><h4>Медсертифікат</h4>
+              <div class="ln" style="width:75%"></div><div class="ln" style="width:55%"></div>
+              <div class="seal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="waves" aria-hidden="true">
+    <div class="wave w1"></div>
+    <div class="wave w2"></div>
+    <div class="wave w3"></div>
+  </div>
+</section>
+
+<!-- ===== ПОСЛУГИ ===== -->
+<section class="pad" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Що ми робимо</span>
+      <h2>Три напрямки — один підрядник</h2>
+      <p>Замість того щоб бігати по інстанціях, ви передаєте нам завдання й отримуєте готовий результат. Нижче — повний перелік.</p>
+    </div>
+
+    <div class="cat-grid">
+      <article class="card green reveal tilt">
+        <div class="icn">📄</div>
+        <h3>Документи моряка</h3>
+        <p class="sub">Оформлення, продовження, підтвердження</p>
+        <ul>
+          <li>Послужна книжка моряка</li>
+          <li>Робочий диплом та кваліфікаційні свідоцтва</li>
+          <li>Підтвердження дипломів (endorsement)</li>
+          <li>Посвідчення особи моряка</li>
+          <li>Сертифікати STCW · тренінги</li>
+          <li>Закордонний паспорт · апостиль · переклади</li>
+        </ul>
+      </article>
+
+      <article class="card orange reveal tilt">
+        <div class="icn">🩺</div>
+        <h3>Медкомісія</h3>
+        <p class="sub">Запис і організаційний супровід</p>
+        <ul>
+          <li>Запис у сертифікований медзаклад для моряків</li>
+          <li>Супровід під час проходження комісії</li>
+          <li>Допомога з оформленням медичного сертифіката</li>
+          <li>Консультація щодо переліку лікарів і аналізів</li>
+        </ul>
+        <p class="sub" style="margin-top:14px;font-size:.82rem">Медичні висновки видає виключно ліцензований медзаклад. Ми відповідаємо за організацію та супровід.</p>
+      </article>
+
+      <article class="card ink reveal tilt">
+        <div class="icn">⚓</div>
+        <h3>Працевлаштування</h3>
+        <p class="sub">Підготовка та консультації</p>
+        <ul>
+          <li>Підготовка CV та пакета документів моряка</li>
+          <li>Допомога з реєстрацією в крюїнгових компаніях</li>
+          <li>Консультації щодо вимог судновласників</li>
+          <li>Логістика та доставка документів Україна · ЄС</li>
+        </ul>
+        <p class="sub" style="margin-top:14px;font-size:.82rem">Надаємо консультації та підготовку документів. Рішення про найм ухвалює роботодавець.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ПРОЦЕС ===== -->
+<section class="pad" id="process" style="background:linear-gradient(180deg, transparent, rgba(163,191,111,.12))">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Прозоро</span>
+      <h2>Як це працює</h2>
+      <p>Жодних «сюрпризів» у вартості. Ви бачите план дій і ціну до старту.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="no"></span><h4>Заявка</h4><p>Лишаєте запит — ми уточнюємо ваше завдання та терміни.</p></div>
+      <div class="step reveal"><span class="no"></span><h4>План і вартість</h4><p>Надсилаємо прозорий перелік дій і фіксовану ціну.</p></div>
+      <div class="step reveal"><span class="no"></span><h4>Оформлення</h4><p>Збираємо, готуємо та подаємо документи. Тримаємо в курсі.</p></div>
+      <div class="step reveal"><span class="no"></span><h4>Готово</h4><p>Отримуєте документи зручним способом — особисто чи доставкою.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ЧОМУ МИ (темна секція) ===== -->
+<section class="pad dark" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Переваги</span>
+      <h2>Чому моряки обирають нас</h2>
+      <p>Ми не обіцяємо неможливого. Ми робимо складне зрозумілим і знімаємо з вас організаційний клопіт.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why reveal"><div class="b">🧭</div><div><h4>Знаємо фарватер</h4><p>Розбираємось у вимогах до документів і не водимо вас зайвими «колами».</p></div></div>
+      <div class="why reveal"><div class="b">🌍</div><div><h4>Україна та Європа</h4><p>Працюємо дистанційно й офлайн — там, де зручно вам.</p></div></div>
+      <div class="why reveal"><div class="b">💬</div><div><h4>Завжди на звʼязку</h4><p>Супровід на кожному етапі: ви знаєте, що відбувається з вашою справою.</p></div></div>
+      <div class="why reveal"><div class="b">💳</div><div><h4>Чесна вартість</h4><p>Ціна фіксується до початку роботи. Без прихованих доплат.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== КОНТАКТ / ЗАЯВКА ===== -->
+<section class="pad" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Безкоштовна консультація</span>
+        <h2>Розрахуємо вартість вашого завдання</h2>
+        <p>Опишіть, що потрібно оформити — ми відповімо з планом і ціною. Зазвичай протягом робочого дня.</p>
+        <div class="contact-item"><span class="b">📞</span><a href="tel:+380000000000">+38 (000) 000-00-00</a></div>
+        <div class="contact-item"><span class="b">✉️</span><a href="mailto:hello@your-domain.ua">hello@your-domain.ua</a></div>
+        <div class="contact-item"><span class="b">📍</span>Одеса, Україна · працюємо по всій країні</div>
+      </div>
+
+      <!-- ⚠️ Підстав свій Formspree-ендпоінт у action -->
+      <form action="https://formspree.io/f/ВАШ_ID" method="POST" class="reveal">
+        <label for="name">Імʼя</label>
+        <input id="name" name="name" type="text" placeholder="Як до вас звертатися" required>
+
+        <label for="phone">Телефон або месенджер</label>
+        <input id="phone" name="phone" type="text" placeholder="+380 / Telegram / WhatsApp" required>
+
+        <label for="service">Що потрібно</label>
+        <select id="service" name="service">
+          <option>Документи моряка</option>
+          <option>Медкомісія</option>
+          <option>Працевлаштування / крюїнг</option>
+          <option>Інше / консультація</option>
+        </select>
+
+        <label for="msg">Деталі (необовʼязково)</label>
+        <textarea id="msg" name="message" rows="3" placeholder="Коротко опишіть завдання"></textarea>
+
+        <label class="consent">
+          <input type="checkbox" required>
+          <span>Я погоджуюся з <a href="/privacy.html" style="color:var(--ink);text-decoration:underline;font-weight:600">політикою конфіденційності</a> та обробкою моїх даних.</span>
+        </label>
+
+        <button type="submit" class="btn btn-primary">Надіслати заявку →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ФУТЕР ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#"><span class="logo">Ф</span><b>Фарватер</b></a>
+        <p>Допомога морякам з документами, медкомісією та працевлаштуванням. Україна та Європа.</p>
+      </div>
+      <div>
+        <h5>Послуги</h5>
+        <a href="#services">Документи моряка</a>
+        <a href="#services">Медкомісія</a>
+        <a href="#services">Працевлаштування</a>
+      </div>
+      <div>
+        <h5>Інформація</h5>
+        <a href="#process">Як це працює</a>
+        <a href="/privacy.html">Політика конфіденційності</a>
+        <a href="#contact">Контакти</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="yr"></span> Фарватер. Усі права захищені.</span>
+      <span>Одеса, Україна · hello@your-domain.ua</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Плаваючі месенджери -->
+<div class="fab" aria-hidden="false">
+  <a class="tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">✈️</a>
+  <a class="wa" href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Рік у футері */
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* Хедер: фон при скролі */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, {passive:true});
+
+  /* Бургер-меню */
+  var burger = document.getElementById('burger'), links = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){ links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); }); });
+
+  /* Reveal при скролі */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  if(!reduce){
+    /* 3D-нахил сцени та карток за рухом миші */
+    var scene = document.getElementById('scene'), inner = document.getElementById('sceneInner');
+    if(scene){
+      scene.addEventListener('mousemove', function(e){
+        var r = scene.getBoundingClientRect();
+        var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5;
+        inner.style.transform = 'rotateY('+(x*16)+'deg) rotateX('+(-y*16)+'deg)';
+      });
+      scene.addEventListener('mouseleave', function(){ inner.style.transform = 'rotateY(0) rotateX(0)'; });
+    }
+    document.querySelectorAll('.tilt').forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5;
+        card.style.transform = 'perspective(800px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function(){ card.style.transform=''; });
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# robots.txt — Фарватер
+# Дозволяємо індексацію всього сайту (важливо для Google Ads та SEO)
+User-agent: *
+Allow: /
+
+# Закриваємо лише технічні/службові шляхи (приклад — за потреби)
+Disallow: /thank-you-internal/
+Disallow: /*?utm_
+
+# Посилання на карту сайту
+Sitemap: https://your-domain.ua/sitemap.xml
